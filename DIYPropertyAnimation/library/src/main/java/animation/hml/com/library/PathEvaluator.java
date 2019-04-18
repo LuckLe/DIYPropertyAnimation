@@ -15,12 +15,20 @@ public class PathEvaluator implements TypeEvaluator<PathPoint> {
 //            贝塞尔曲线三次方公式   B(t) = P0*(1-t)^3 + 3*P1*t*(1-t)^2 + 3*P2*t^2*(1-t)+P3*t^3 , t∈[0,1]
             float oneMinusT = 1 - t;
             x = startValue.mX * oneMinusT * oneMinusT * oneMinusT +
-                    3 * endValue.mControl0X,oneMinusT
+                    3 * endValue.mControl0X * t * oneMinusT * oneMinusT +
+                    3 * endValue.mControl1X * t * t * oneMinusT +
+                    endValue.mX * t * t * t;
+            y = startValue.mY * oneMinusT * oneMinusT * oneMinusT +
+                    3 * endValue.mControl0Y * t * oneMinusT * oneMinusT +
+                    3 * endValue.mControl1Y * t * t * oneMinusT +
+                    endValue.mY * t * t * t;
 
         }else if (endValue.mOperation == PathPoint.Operation.LINE){
             x = startValue.mX + t * (endValue.mX - startValue.mX);
             y = startValue.mY + t * (endValue.mY - startValue.mY);
-        }else {
+        }else {//move
+            x = endValue.mX;
+            y = endValue.mY;
 
         }
 
