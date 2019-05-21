@@ -30,6 +30,12 @@
         android:text="贝塞尔曲线运动"
         />
 
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="按实际拉卡拉www.baidu.com,案例看就按了看手机，1851391218"
+        />
 
     <ImageView
         android:id="@+id/imgv"

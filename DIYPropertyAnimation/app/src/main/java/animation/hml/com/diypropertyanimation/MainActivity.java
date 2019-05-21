@@ -2,10 +2,12 @@ package animation.hml.com.diypropertyanimation;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import animation.hml.com.library.PathPoint;
 
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnLineAnimator;
     private Button btnBack;
     private Button btnBezierAnimator;
+    private TextView tvText;
     private float x;
     private float y;
 
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLineAnimator = findViewById(R.id.btn_line_animator);
         btnBack = findViewById(R.id.btn_back);
         btnBezierAnimator = findViewById(R.id.btn_bezier_animator);
+        tvText = findViewById(R.id.tvText);
 
         imgv.setOnClickListener(this);
         btnLineAnimator.setOnClickListener(this);
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_back:
                 imgv.setX(x);
                 imgv.setY(y);
+                //对电子邮箱地址、电话号码、web地址和住所地址都进行超链接。
+                Linkify.addLinks(tvText,Linkify.EMAIL_ADDRESSES|Linkify.PHONE_NUMBERS|Linkify.WEB_URLS|Linkify.MAP_ADDRESSES);
                 break;
             case R.id.btn_bezier_animator:
                 startBezierAnimator();
